@@ -1,0 +1,316 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@theme {
+  /* Primary: Dark Green */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #166534;
+  --color-primary-700: #15803d;
+  --color-primary-800: #14532d;
+  --color-primary-900: #052e16;
+
+  /* Accent: Golden Yellow */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #d4a017;
+  --color-accent-600: #b8860b;
+  --color-accent-700: #92400e;
+
+  --font-sans: "Inter", "system-ui", "-apple-system", "sans-serif";
+}
+
+@layer base {
+  :root {
+    --background: #fafdf7;
+    --foreground: #0c1f0e;
+    --card: #ffffff;
+    --card-foreground: #0c1f0e;
+    --popover: #ffffff;
+    --popover-foreground: #0c1f0e;
+    --primary: #166534;
+    --primary-light: #22c55e;
+    --primary-foreground: #f0fdf4;
+    --secondary: #f0fdf4;
+    --secondary-foreground: #14532d;
+    --muted: #f1f5f0;
+    --muted-foreground: #5c7a5e;
+    --accent: #d4a017;
+    --accent-foreground: #422006;
+    --destructive: #dc2626;
+    --destructive-foreground: #fef2f2;
+    --border: #d1e7d5;
+    --input: #d1e7d5;
+    --ring: #166534;
+    --radius: 0.75rem;
+    --gold: #d4a017;
+    --gold-light: #fbbf24;
+  }
+
+  .dark {
+    --background: #05120a;
+    --foreground: #e8f5e9;
+    --card: #0a1f12;
+    --card-foreground: #e8f5e9;
+    --popover: #0a1f12;
+    --popover-foreground: #e8f5e9;
+    --primary: #22c55e;
+    --primary-light: #4ade80;
+    --primary-foreground: #052e16;
+    --secondary: #14332a;
+    --secondary-foreground: #bbf7d0;
+    --muted: #14332a;
+    --muted-foreground: #86a88a;
+    --accent: #fbbf24;
+    --accent-foreground: #422006;
+    --destructive: #b91c1c;
+    --destructive-foreground: #fef2f2;
+    --border: #1e4a2e;
+    --input: #1e4a2e;
+    --ring: #22c55e;
+    --gold: #fbbf24;
+    --gold-light: #fde68a;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+/* ============================================================
+   Glassmorphism Utilities
+   ============================================================ */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background: rgba(10, 31, 18, 0.7);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(209, 231, 213, 0.5);
+    box-shadow: 0 8px 32px rgba(22, 101, 52, 0.06);
+  }
+
+  .dark .glass-card {
+    background: rgba(10, 31, 18, 0.65);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #d4a017, #fbbf24, #d4a017);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Green gradient text */
+  .text-green-gradient {
+    background: linear-gradient(135deg, #166534, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--muted) 25%,
+      var(--border) 50%,
+      var(--muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(22, 101, 52, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(22, 101, 52, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* ============================================================
+   Component-level base styles
+   ============================================================ */
+@layer components {
+  /* Hero gradient overlay */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(22, 101, 52, 0.95) 0%,
+      rgba(5, 46, 22, 0.85) 50%,
+      rgba(22, 101, 52, 0.75) 100%
+    );
+  }
+
+  .dark .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 18, 10, 0.97) 0%,
+      rgba(10, 31, 18, 0.9) 50%,
+      rgba(5, 18, 10, 0.85) 100%
+    );
+  }
+
+  /* Verified badge */
+  .verified-badge {
+    background: linear-gradient(135deg, #166534, #22c55e);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Gold accent button */
+  .btn-gold {
+    background: linear-gradient(135deg, #d4a017, #fbbf24);
+    color: #422006;
+    font-weight: 600;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #b8860b, #d4a017);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+  }
+
+  /* Rating stars */
+  .star-filled {
+    color: #fbbf24;
+    fill: #fbbf24;
+  }
+
+  /* Property card hover effect */
+  .property-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(22, 101, 52, 0.12);
+  }
+  .dark .property-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ============================================================
+   Leaflet map overrides
+   ============================================================ */
+.leaflet-container {
+  border-radius: var(--radius);
+  z-index: 0;
+}
